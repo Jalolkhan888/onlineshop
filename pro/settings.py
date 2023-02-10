@@ -38,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'shop.apps.ShopConfig',
+    'cart.apps.CartConfig',
+    'orders.apps.OrdersConfig',
+    'payment.apps.PaymentConfig',
 ]
 
 MIDDLEWARE = [
@@ -63,6 +66,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'cart.context_processors.cart',
             ],
         },
     },
@@ -117,9 +121,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
+# STATICFILES_DIRS = [
+#     BASE_DIR / "static",
+# ]
+STATIC_ROOT = BASE_DIR / 'static'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -128,3 +133,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+CART_SESSION_ID = 'cart'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Stripe settings
+STRIPE_PUBLISHABLE_KEY = 'pk_test_51M7yipDyFfoHpTvrHPQnp6ePtsHF8nNJW83QMidIx6yalQwsSEsbt5czohHygiDKyxiBtPMKdUxdiy2uqLs6uNbr00Pe7SHYYZ' # Publishable key
+STRIPE_SECRET_KEY = 'sk_test_51M7yipDyFfoHpTvrfo0VXyl1vuRml33xnDlQ0qllqlZ6MpAO8rNHMoe1r8KN9afwX9sHqWTiMTGNZrJrJe4SLe4I00bpMFh4Ea' # Secret key
+STRIPE_API_VERSION = '2022-08-01'
+
+STRIPE_WEBHOOK_SECRET = 'whsec_b9a87dcf078d53aa1d619a8da7c05cb3912f77acc12fe839e74f72deacd2f123'
+
+
